@@ -52,4 +52,5 @@ FIELDS TERMINATED BY ','
 
 SELECT c2, CONCAT_WS(':', collect_list(CAST(c1 AS string)))
 FROM tbl0
+
 GROUP BY c2;
