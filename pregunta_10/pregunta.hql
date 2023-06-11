@@ -30,3 +30,11 @@ LOAD DATA LOCAL INPATH 'data.tsv' INTO TABLE t0;
     >>> Escriba su respuesta a partir de este punto <<<
 */
 
+INSERT OVERWRITE LOCAL DIRECTORY './output'
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+
+SELECT map_key, COUNT(1) AS total_sum
+FROM t0 t
+LATERAL VIEW explode(c3) t1 AS map_key, map_value
+GROUP BY map_key;
